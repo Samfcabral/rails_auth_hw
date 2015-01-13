@@ -1,0 +1,38 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Blog Land</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/articles/new">Add New</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Sign in</a></li>
+        <li><a href="#">Register<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!-- End of Navigation -->
+
+<div class="container">
+	<h1>Add a New Article</h1>
+  <br>
+	<%= form_for @article do |f| %>
+	    <%= f.text_field :title, placeholder: "Title" %> <br><br>
+	    <%= f.text_field :author, placeholder: "Author" %> <br><br>
+	    <%= f.text_area :content, placeholder: "Content" %> <br><br>
+	    <%= f.submit "Save Article" %>
+	<% end %>
+  
+</div>
