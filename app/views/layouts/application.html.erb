@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--   <title>BlogAppRails</title> -->
+  <title>BlogAppRails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -26,8 +26,12 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login">Sign in</a></li>
-        <li><a href="/sign_up">Register<span class="sr-only">(current)</span></a></li>
+        <% unless current_user %>
+          <li><a href="/login">Sign in</a></li>
+          <li><a href="/sign_up">Register<span class="sr-only">(current)</span></a></li>
+        <% else %>
+          <li><a href="/logout">Logout</a></li>
+        <% end %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
