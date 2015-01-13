@@ -4,6 +4,17 @@ class User < ActiveRecord::Base
 
 	attr_reader :password
 
+	validates_confirmation_of :password
+  	validates_presence_of :password_digest
+
+	def authenticate(unencrypted_password)
+		if BCrypt::Password.new(password_digest) == unencrypted_password
+			self
+		else
+			false
+		end
+  	end
+
 	def password=(unencrypted_password)
 	    if unencrypted_password.nil?
 	      ## when nil password_digest is nil
@@ -16,12 +27,6 @@ class User < ActiveRecord::Base
 	    end
 	end
 
-	def authenticate(unencrypted_password)
-		if BCrypt::Password.new(password_digest) == unencrypted_password
-			self
-		else
-			false
-		end
-  	end
+
 
 end
