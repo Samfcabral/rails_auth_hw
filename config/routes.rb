@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/edit'
-
   root to: 'articles#index'
 
   get '/articles', to: 'articles#index', as: 'articles'
@@ -18,4 +8,14 @@ Rails.application.routes.draw do
   get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
   patch '/articles/:id', to: 'articles#update'
   delete '/articles/:id', to: 'articles#destroy'
+
+
+  get "/login", to: "sessions#new"
+
+  post "/sessions", to: "sessions#create"
+
+  get "/sign_up", to: "users#new", as: "sign_up"
+
+  resources :users
+
 end
