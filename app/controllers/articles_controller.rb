@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+	before_filter :logged_in, except: [:index]
+
 	def index
 		@articles = Article.all
 		render :index
@@ -36,7 +38,15 @@ class ArticlesController < ApplicationController
 	def destroy
 		article = Article.find(params[:id])
 		article.destroy
-		redirect_to root_path
+		redirect_to articles_path
 	end
+
+private
+	def require_login
+	    unless @current_user 
+	      flash[:error] = "You must be logged in to access this section"
+	      redirect_to "/login"
+	    end
+	  end
 
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in?, only: [:show]
+  #before_action :logged_in?, only: [:show]
   
   def index
   	@user = User.new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.create(user_params)
+  	@user = User.create user_params
     login(@user)
   	redirect_to user_path(@user.id)
   end

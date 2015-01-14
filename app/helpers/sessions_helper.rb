@@ -6,7 +6,8 @@ module SessionsHelper
   end
 
   def logout
-    @current_user = session[:user_id] = nil
+    @current_user = nil
+    session[:user_id] = nil
   end
 
 
@@ -17,6 +18,10 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user = @current_user || User.find_by(id: session[:user_id])
+    if session[:user_id] == nil
+      @current_user = nil
+    else
+      @current_user = @current_user || User.find_by(id: session[:user_id])
+    end
   end
 end
